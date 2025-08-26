@@ -13,7 +13,7 @@ Có giao diện đơn giản bằng **Tkinter**, log hiển thị trực tiếp 
 - Có thể build thành `.exe` (Windows) hoặc `.dmg` (macOS)
 
 ---
-
+```text
 ## 📂 Cấu trúc project
 project/
 │── gui.py # Giao diện Tkinter
@@ -27,7 +27,7 @@ project/
 │── accounts.txt # Danh sách tài khoản (user|password)
 │── requirements.txt
 │── README.md
-
+```
 
 ---
 
