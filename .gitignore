@@ -1,3 +1,6 @@
 __pycache__/
+build/
+dist/
 accounts.txt
 app.log
+gui.spec

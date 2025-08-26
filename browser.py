@@ -1,5 +1,6 @@
 import undetected_chromedriver as uc
-from config import USE_INCOGNITO
+from selenium.webdriver.chrome.options import Options
+from config import USE_INCOGNITO  # <-- sửa lại chỗ này
 
 def init_driver():
     options = uc.ChromeOptions()
