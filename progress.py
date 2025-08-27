@@ -66,6 +66,7 @@ def get_case_numbers(driver):
                 By.XPATH, ".//h3[normalize-space()='Case number']/../following-sibling::div/p/a"
             )
             href = link_el.get_attribute("href")
+            case_number = link_el.text.strip()
 
             if not href:
                 logger.warning(f"⚠️ [{idx}] Không tìm thấy href cho case Temporary residence permit")
@@ -76,7 +77,7 @@ def get_case_numbers(driver):
                 continue
 
             href_seen.add(href)
-            cases.append((case_type, href))
+            cases.append((case_type, href, case_number))
 
         except Exception as e:
             logger.warning(f"⚠️ [{idx}] Lỗi parse 1 case: {e}")
@@ -339,7 +340,12 @@ def select_time_slot(driver):
                 )
                 driver.execute_script("arguments[0].click();", confirm)
                 logger.info("✅ Đã xác nhận giờ hẹn thành công")
-                return True  # thành công thì stop
+                # Kiểm tra url sau khi xác nhận
+                random_sleep(0.5, 1.2)
+                if driver.current_url == HOME_URL:
+                    return True
+                else:
+                    continue
 
             except Exception as e:
                 logger.warning(f"⚠️ Giờ {h.text.strip()} không đặt được: {e}")

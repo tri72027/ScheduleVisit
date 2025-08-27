@@ -43,8 +43,11 @@ def main(max_days=10, max_retry_case=5):
                 logger.warning(f"⛔ USER {idx}: {username} không có case Temporary residence permit, bỏ qua")
                 continue
 
-            for case_type, case_href in cases:
+            for case_type, case_href, case_number in cases:
                 logger.info(f"➡️ USER {idx}: Case {case_type} - {case_href}")
+                if case_number != "-":
+                    logger.info(f"   - Case number: {case_number}")
+                    continue
                 try:
                     process_case_link(driver, case_href, max_days=max_days)
                 except Exception as e:
